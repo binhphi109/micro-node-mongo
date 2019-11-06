@@ -5,11 +5,10 @@
  */
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-  crypto = require('crypto');
+  crypto = require('crypto'),
+  jwt = require('jsonwebtoken'),
+  config = require('../lib/config');
 
-/**
- * User Schema
- */
 var UserSchema = new Schema({
   email: {
     type: String,
@@ -38,9 +37,6 @@ var UserSchema = new Schema({
   }
 });
 
-/**
- * Hook a pre save method to hash the password
- */
 UserSchema.pre('save', function (next) {
   if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64');
@@ -50,9 +46,6 @@ UserSchema.pre('save', function (next) {
   next();
 });
 
-/**
- * Create instance method for hashing a password
- */
 UserSchema.methods.hashPassword = function (password) {
   if (this.salt && password) {
     return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 512, 'sha512').toString('base64');
@@ -61,11 +54,16 @@ UserSchema.methods.hashPassword = function (password) {
   }
 };
 
-/**
- * Create instance method for authenticating user
- */
 UserSchema.methods.authenticate = function (password) {
   return this.password === this.hashPassword(password);
+};
+
+UserSchema.methods.generateJWT = function () {
+  return jwt.sign({
+    _id: this._id
+  }, config.tokenSecret, {
+    expiresIn: config.tokenExpiresIn,
+  });
 };
 
 module.exports = mongoose.model('User', UserSchema);

@@ -8,7 +8,7 @@ var passport = require('passport');
 module.exports = function (app) {
   // User Routes
   var baseUrl = '/api/',
-    api = require('../controllers/usersController');
+    api = require('../controllers/users');
 
   /**
    * @swagger
@@ -39,7 +39,7 @@ module.exports = function (app) {
    *        200: 
    *          description: Returns the successful created user
    */
-  app.route(baseUrl + 'Users/signup').post(api.signup);
+  app.route(baseUrl + 'signup').post(api.signup);
 
   /**
    * @swagger
@@ -65,20 +65,6 @@ module.exports = function (app) {
    *        200: 
    *          description: Returns the successful logged-in user
    */
-  app.route(baseUrl + 'Users/signin').post(api.signin);
-
-  /**
-   * @swagger
-   * /users/signout:
-   *    post:
-   *      description: This method allows to log a user out
-   *      tags:
-   *        - Users
-   *      responses:
-   *        200: 
-   *          description: Returns null
-   *      
-   */
-  app.route(baseUrl + 'Users/signout').post(api.signout);
+  app.route(baseUrl + 'signin').post(api.signin);
 
 };

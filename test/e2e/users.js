@@ -5,9 +5,9 @@
  */
 var should = require('should'),
   request = require('supertest'),
-  User = require('../models/user'),
-  Note = require('../models/note'),
-  app = require('../lib/app');
+  User = require('../../models/user'),
+  Note = require('../../models/note'),
+  app = require('../../lib/app');
 
 /**
  * Globals

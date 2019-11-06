@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var baseUrl = '/api/',
-  policy = require('../policies/notesPolicy'),
-  api = require('../controllers/notesController');
+  policy = require('../policies/notes'),
+  api = require('../controllers/notes');
 
 module.exports = function (app) {
   

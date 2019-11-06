@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:10
 
 RUN mkdir /flowtify-task
 WORKDIR /flowtify-task

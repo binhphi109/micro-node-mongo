@@ -7,7 +7,7 @@ var _ = require('lodash'),
   path = require('path'),
   mongoose = require('mongoose'),
   Note = mongoose.model('Note'),
-  errorHandler = require('./errorsController');
+  errorHandler = require('./errors');
 
 /**
  * Create a Note
@@ -21,9 +21,9 @@ exports.create = function(req, res) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.jsonp(note);
     }
+
+    res.jsonp(note);
   });
 };
 
@@ -48,9 +48,9 @@ exports.list = function(req, res) {
         return res.status(400).send({
           message: errorHandler.getErrorMessage(err)
         });
-      } else {
-        res.jsonp(notes);
-      }
+      } 
+      
+      res.jsonp(notes);
     });
 };
 
