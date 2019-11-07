@@ -1,9 +1,9 @@
 FROM node:10
 
-RUN mkdir /flowtify-task
-WORKDIR /flowtify-task
+RUN mkdir /sample-task
+WORKDIR /sample-task
 
-COPY . /flowtify-task
+COPY . /sample-task
 RUN npm install
 
 CMD [ "npm", "start" ]
