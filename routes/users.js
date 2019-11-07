@@ -39,7 +39,7 @@ module.exports = function (app) {
    *        200: 
    *          description: Returns the successful created user
    */
-  app.route(baseUrl + 'signup').post(api.signup);
+  app.route(baseUrl + 'users/signup').post(api.signup);
 
   /**
    * @swagger
@@ -65,6 +65,6 @@ module.exports = function (app) {
    *        200: 
    *          description: Returns the successful logged-in user
    */
-  app.route(baseUrl + 'signin').post(api.signin);
+  app.route(baseUrl + 'users/signin').post(api.signin);
 
 };
