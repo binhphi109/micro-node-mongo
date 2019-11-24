@@ -10,9 +10,12 @@ var mongoose = require('mongoose'),
  * Note Schema
  */
 var NoteSchema = new Schema({
+  title: {
+    type: String,
+    required: 'Please fill Note title',
+  },
   content: {
     type: String,
-    default: '',
     required: 'Please fill Note content',
   },
   created: {
